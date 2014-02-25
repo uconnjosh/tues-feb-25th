@@ -5,8 +5,8 @@ var Contact = {
 };
 
 var Phone = {
-    formatPhone: function() {
-    return (this.phone);
+   formatPhone: function() {
+       return (this.phone);
   }
 };
 
@@ -46,6 +46,12 @@ $(document).ready(function() {
 
   $("form#new-contact").submit(function(event) {
     event.preventDefault();
+    var phoneNub = $("input.new-digit").val();
+
+    if ((phoneNub.length !== 10) || phoneNub%1 !== 0){
+      alert("Enter a valid nub plz");
+      return;
+    } else {
 
     var inputtedFirstName = $("input#new-first-name").val();
     var inputtedLastName = $("input#new-last-name").val();
@@ -74,10 +80,10 @@ $(document).ready(function() {
       newAddress.state = inputtedState;
 
       newContact.addresses.push(newAddress);
-      
+    
     });
 
-  $(".new-phone").each(function() {
+    $(".new-phone").each(function() {
       var inputtedPhoneNumber = $(this).find("input.new-digit").val();
        
 
@@ -86,6 +92,7 @@ $(document).ready(function() {
      
       newContact.phones.push(newPhone);
      });
+
 
       $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
 
@@ -110,5 +117,6 @@ $(document).ready(function() {
 
     $(this).find("input").val("");
     this.reset();
+    }
   });
 });
