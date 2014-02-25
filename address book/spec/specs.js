@@ -9,3 +9,17 @@ describe('Address', function() {
     });
   });
 });
+describe('Phone', function() {
+  describe("formatPhone", function() {
+    it("returns the full phone number with nice formatting", function() {
+      var testPhone = Object.create(Phone);
+      testPhone.areaCode = "860";
+      testPhone.firstThree = "336";
+      testPhone.lastFour = "1346";
+      alert(testPhone.areaCode);
+
+      testPhone.formatPhone().should.equal("8603361346");
+
+    });
+  });
+});
